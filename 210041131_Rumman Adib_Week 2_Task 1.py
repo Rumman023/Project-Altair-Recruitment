@@ -29,7 +29,7 @@ def process_instructions(instructions, grid_size):
             tempy -= 1
 
         # Setting the boundary for the rover's movement
-        if (0 <= tempx < grid_size[0]) and (0 <= tempy < grid_size[1]):
+        if (0 <= tempx and tempx < grid_size[1]) and (0 <= tempy and tempy < grid_size[0]):
             x = tempx  # If the rover's x movement is within the set boundary, only then it is assigned to the actual x variable
             y = tempy  # If the rover's y movement is within the set boundary, only then it is assigned to the actual y variable
 
@@ -39,14 +39,17 @@ def process_instructions(instructions, grid_size):
 instructions = input("Enter your instruction to the rover: ")
 
 # Taking grid row and column input and storing it in the grid_size tuple
-gridRow, gridCol = map(int, input("Enter grid size (x,y): ").split())
+gridRow, gridCol = map(int, input("Enter grid size: ").split())
 grid_size = (gridRow, gridCol)
 
-print(process_instructions(instructions, grid_size))
+
+# Storing the processed tuple which contains the final result
+ans = process_instructions(instructions, grid_size)
+print(f"Coordinates (x,y): ({ans[0]},{ans[1]})")
+
+# print("Coordinates (x,y):", process_instructions(instructions, grid_size))
 
 #Direction processing
-ans = process_instructions(instructions, grid_size)
-
 if ans[2] == 0:
     print("Direction: N")
 elif ans[2] == 1 or ans[2] == -3:
